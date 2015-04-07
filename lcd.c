@@ -10,6 +10,13 @@
 #include <wiringPi.h>
 #include <lcd.h>
 
+#define LCD_RS 11
+#define LCD_E 6
+#define LCD_D0 5
+#define LCD_D1 4
+#define LCD_D2 1 
+#define LCD_D3 16
+
 void usage(char *progname, FILE *stream);
 
 int main(int argc, char **argv) {
@@ -25,12 +32,12 @@ int main(int argc, char **argv) {
     char *lcd_line2 = NULL;
 
     /* default values for lcdInit */
-    unsigned int lcd_rs = 11;
-    unsigned int lcd_e = 6;
-    unsigned int lcd_d0 = 5;
-    unsigned int lcd_d1 = 4;
-    unsigned int lcd_d2 = 1;
-    unsigned int lcd_d3 = 16;
+    unsigned int lcd_rs = LCD_RS;
+    unsigned int lcd_e = LCD_E;
+    unsigned int lcd_d0 = LCD_D0;
+    unsigned int lcd_d1 = LCD_D1;
+    unsigned int lcd_d2 = LCD_D2;
+    unsigned int lcd_d3 = LCD_D3;
 
     while ((optopt = getopt(argc, argv, "i:1:2:h")) != -1) {
         switch (optopt) {
@@ -107,8 +114,9 @@ int main(int argc, char **argv) {
 
 void usage(char *progname, FILE *stream) {
     fprintf(stream, "%s: usage: \n", progname);
-    fprintf(stream, "%s:     -i [a b c d e f]: initialize using wiringPi pin# for RS, E, DATA0-DATA3\n", progname);
-    fprintf(stream, "%s:     -1 [text]: display 16 chars of text in line 1\n", progname);
-    fprintf(stream, "%s:     -2 [text]: display 16 chars of text in line 2\n", progname);
-    fprintf(stream, "%s:     -h: display this usage help\n", progname);
+    fprintf(stream, "%s:    -i [a b c d e f]: initialize using wiringPi pin# for RS, E, DATA0-DATA3. Default: \"%d %d %d %d %d %d\"\n",
+            progname, LCD_RS, LCD_E, LCD_D0, LCD_D1, LCD_D2, LCD_D3);
+    fprintf(stream, "%s:    -1 [text]: display 16 chars of text in line 1\n", progname);
+    fprintf(stream, "%s:    -2 [text]: display 16 chars of text in line 2\n", progname);
+    fprintf(stream, "%s:    -h: display this usage help\n", progname);
 }
