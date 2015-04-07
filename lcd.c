@@ -10,12 +10,12 @@
 #include <wiringPi.h>
 #include <lcd.h>
 
-#define LCD_RS 11
-#define LCD_E 6
-#define LCD_D0 5
-#define LCD_D1 4
-#define LCD_D2 1 
-#define LCD_D3 16
+#define LCD_RS 3
+#define LCD_E 2
+#define LCD_D0 0
+#define LCD_D1 7 
+#define LCD_D2 9 
+#define LCD_D3 8 
 
 void usage(char *progname, FILE *stream);
 
