@@ -1,0 +1,3 @@
+.) Wire it up, e.g. https://projects.drogon.net/raspberry-pi/wiringpi/lcd-library/
+.) Install wiringPi according to http://wiringpi.com/download-and-install/
+.) make
