@@ -12,10 +12,10 @@
 
 #define LCD_RS 3
 #define LCD_E 2
-#define LCD_D0 0
-#define LCD_D1 7 
-#define LCD_D2 9 
-#define LCD_D3 8 
+#define LCD_D4 0
+#define LCD_D5 7 
+#define LCD_D6 9 
+#define LCD_D7 8 
 
 void usage(char *progname, FILE *stream);
 
@@ -34,10 +34,10 @@ int main(int argc, char **argv) {
     /* default values for lcdInit */
     unsigned int lcd_rs = LCD_RS;
     unsigned int lcd_e = LCD_E;
-    unsigned int lcd_d0 = LCD_D0;
-    unsigned int lcd_d1 = LCD_D1;
-    unsigned int lcd_d2 = LCD_D2;
-    unsigned int lcd_d3 = LCD_D3;
+    unsigned int lcd_d4 = LCD_D4;
+    unsigned int lcd_d5 = LCD_D5;
+    unsigned int lcd_d6 = LCD_D6;
+    unsigned int lcd_d7 = LCD_D7;
 
     while ((optopt = getopt(argc, argv, "i:1:2:h")) != -1) {
         switch (optopt) {
@@ -55,13 +55,13 @@ int main(int argc, char **argv) {
                     } else if (i == 2) {
                         lcd_e = value;
                     } else if (i == 3) {
-                        lcd_d0 = value;
+                        lcd_d4 = value;
                     } else if (i == 4) {
-                        lcd_d1 = value;
+                        lcd_d5 = value;
                     } else if (i == 5) {
-                        lcd_d2 = value;
+                        lcd_d6 = value;
                     } else if (i == 6) {
-                        lcd_d3 = value;
+                        lcd_d7 = value;
                     } else {
                         usage(argv[0], stderr);
                     }
@@ -92,7 +92,7 @@ int main(int argc, char **argv) {
     wiringPiSetup();
 
     /* rows, cols, shift register bits, rs, strb(=e), d0, d1, ... */
-    lcd_handle = lcdInit(2, 16, 4, lcd_rs, lcd_e, lcd_d0, lcd_d1, lcd_d2, lcd_d3, 0, 0, 0, 0);
+    lcd_handle = lcdInit(2, 16, 4, lcd_rs, lcd_e, lcd_d4, lcd_d5, lcd_d6, lcd_d7, 0, 0, 0, 0);
 
     if (lcd_handle < 0) {
         fprintf(stderr, "%s: lcdInit failed\n", argv[0]);
@@ -114,8 +114,8 @@ int main(int argc, char **argv) {
 
 void usage(char *progname, FILE *stream) {
     fprintf(stream, "%s: usage: \n", progname);
-    fprintf(stream, "%s:    -i [a b c d e f]: initialize using wiringPi pin# for RS, E, DATA0-DATA3. Default: \"%d %d %d %d %d %d\"\n",
-            progname, LCD_RS, LCD_E, LCD_D0, LCD_D1, LCD_D2, LCD_D3);
+    fprintf(stream, "%s:    -i [RS E D4 D5 D6 D7]: initialize using wiringPi pin# for RS, E, DATA4-DATA7. Default: \"%d %d %d %d %d %d\"\n",
+            progname, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
     fprintf(stream, "%s:    -1 [text]: display 16 chars of text in line 1\n", progname);
     fprintf(stream, "%s:    -2 [text]: display 16 chars of text in line 2\n", progname);
     fprintf(stream, "%s:    -h: display this usage help\n", progname);

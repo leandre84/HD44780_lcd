@@ -21,5 +21,8 @@ all:	lcd
 lcd:	lcd.o
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LINKPATHS) $(LINKLIBS)
 
+install:
+	cp lcd /usr/local/bin
+
 clean:
 	rm -f lcd lcd.o
