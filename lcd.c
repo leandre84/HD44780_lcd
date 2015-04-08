@@ -116,7 +116,7 @@ void usage(char *progname, FILE *stream) {
     fprintf(stream, "%s: usage: \n", progname);
     fprintf(stream, "%s:    -i [RS E D4 D5 D6 D7]: initialize using wiringPi pin# for RS, E, DATA4-DATA7. Default: \"%d %d %d %d %d %d\"\n",
             progname, LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
-    fprintf(stream, "%s:    -1 [text]: display 16 chars of text in line 1\n", progname);
-    fprintf(stream, "%s:    -2 [text]: display 16 chars of text in line 2\n", progname);
+    fprintf(stream, "%s:    -1 [text]: display text in line 1\n", progname);
+    fprintf(stream, "%s:    -2 [text]: display text in line 2\n", progname);
     fprintf(stream, "%s:    -h: display this usage help\n", progname);
 }
