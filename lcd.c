@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     char *token = NULL;
     unsigned int value = 0;
     char *strtolep = NULL;
-    volatile unsigned int i = 0;
+    unsigned int i = 0;
 
     int lcd_handle = -1;
     char *lcd_line1 = NULL;
