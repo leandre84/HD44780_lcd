@@ -1,0 +1,29 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          lcd_print_ip
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:     
+# Short-Description: Print IP on LCD
+### END INIT INFO
+
+PATH=$PATH:/usr/bin:/usr/local/bin
+
+COUNT=0
+MAXTRIES=40
+
+if [ ${1} = "start" ]; then
+    IP=$(hostname -I)
+
+    while [ ${#IP} -eq 0 ]; do
+        let COUNT++
+        if [ ${COUNT} -ge ${MAXTRIES} ]; then
+            break
+        fi
+        sleep 1
+        IP=$(hostname -I)
+    done
+
+    lcd -1 $(hostname) -2 ${IP}
+fi
