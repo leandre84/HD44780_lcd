@@ -11,19 +11,24 @@
 PATH=$PATH:/usr/bin:/usr/local/bin
 
 COUNT=0
-MAXTRIES=40
+SLEEPSECONDS=1
+MAXTRIES=20
 
 if [ ${1} = "start" ]; then
     IP=$(hostname -I)
 
     while [ ${#IP} -eq 0 ]; do
-        let COUNT++
+	COUNT=$((${COUNT}+1))
         if [ ${COUNT} -ge ${MAXTRIES} ]; then
             break
         fi
-        sleep 1
+        sleep ${SLEEPSECONDS} 
         IP=$(hostname -I)
     done
 
-    lcd -1 $(hostname) -2 ${IP}
+    if [ ${#IP} -eq 0 ]; then
+        lcd -1 $(hostname) -2 "No IP :-("
+    else
+        lcd -1 $(hostname) -2 "${IP}"
+    fi
 fi
